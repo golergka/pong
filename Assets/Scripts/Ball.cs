@@ -15,10 +15,13 @@ public class Ball : MonoBehaviour
 
 	public void OnCollisionEnter(Collision _Collision)
 	{
-		Debug.Log("Collision!");
-		m_Velocity.x = - m_Velocity.x;
-		m_Velocity.y = - m_Velocity.y;
-		m_Velocity.z = - m_Velocity.z;
+		var wall = _Collision.gameObject.GetComponent<Wall>();
+		if (wall == null)
+		{
+			return;
+		}
+		var normal = wall.Normal.normalized;
+		m_Velocity = m_Velocity - 2 * Vector3.Dot(m_Velocity, normal) * normal;
 	}
 
 	public void FixedUpdate()
@@ -26,4 +29,10 @@ public class Ball : MonoBehaviour
 		transform.position += m_Velocity * Time.deltaTime;
 	}
 
+	public void OnDrawGizmosSelected()
+	{
+		Gizmos.color = Color.red;
+		Vector3 vel = Application.isPlaying ? m_Velocity : StartVelocity;
+		Gizmos.DrawLine(transform.position, transform.position + vel);
+	}
 }
