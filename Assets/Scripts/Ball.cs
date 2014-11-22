@@ -26,7 +26,7 @@ public class Ball : MonoBehaviour
 
 	public void FixedUpdate()
 	{
-		transform.position += m_Velocity * Time.deltaTime;
+		transform.position += m_Velocity * Time.fixedDeltaTime;
 	}
 
 	public void OnDrawGizmosSelected()
