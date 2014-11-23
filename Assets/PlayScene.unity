@@ -2544,6 +2544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: {fileID: 883734488}
+  MaxScore: 10
 --- !u!4 &1812675065
 Transform:
   m_ObjectHideFlags: 0

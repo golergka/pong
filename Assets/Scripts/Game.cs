@@ -6,16 +6,35 @@ using System.Collections.Generic;
 public class Game : Service
 {
 	public Text Text;
+	public int MaxScore = 10;
 
 	int m_RedScore;
 	int m_BlueScore;
 
+	int RedScore
+	{
+		get { return m_RedScore; }
+		set
+		{
+			m_RedScore = value;
+			UpdateScoreText();
+		}
+	}
+
+	int BlueScore
+	{
+		get { return m_BlueScore; }
+		set
+		{
+			m_BlueScore = value;
+			UpdateScoreText();
+		}
+	}
+
 	protected override void Awake()
 	{
 		base.Awake();
-		m_RedScore = 0;
-		m_BlueScore = 0;
-		UpdateScoreText();
+		ResetScore();
 	}
 
 	public void Score(Player _PlayerGoal)
@@ -23,15 +42,29 @@ public class Game : Service
 		switch(_PlayerGoal)
 		{
 			case (Player.Red):
-				m_RedScore++;
+				RedScore++;
 				break;
 
 			case (Player.Blue):
-				m_BlueScore++;
+				BlueScore++;
 				break;
 		}
-		UpdateScoreText();
+		CheckWin();
 		ResetRound();
+	}
+
+	void ResetScore()
+	{
+		RedScore = 0;
+		BlueScore = 0;
+	}
+
+	void CheckWin()
+	{
+		if (m_RedScore > MaxScore || m_BlueScore > MaxScore)
+		{
+			ResetScore();
+		}
 	}
 
 	void UpdateScoreText()
