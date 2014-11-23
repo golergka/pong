@@ -469,9 +469,9 @@ Light:
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
-    m_Strength: 1
+    m_Strength: .519999981
     m_Bias: 0
     m_Softness: 4
     m_SoftnessFade: 1
@@ -2367,6 +2367,14 @@ MonoBehaviour:
   LeftGoal: {fileID: 158413454}
   RightGoal: {fileID: 452586134}
   GoalsDelta: -1
+  BlocksHeight: 12
+  BlockSize: 3
+  BlockMargin: .5
+  BlockDepthDown: -10
+  BlockDepthUp: -3
+  MaxBallDistance: 50
+  MinBallDistance: 5
+  BlocksMaterial: {fileID: 2100000, guid: c303010a18dcf40a2990333f60d3bb75, type: 2}
 --- !u!1 &1494505392
 GameObject:
   m_ObjectHideFlags: 0

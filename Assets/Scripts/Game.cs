@@ -156,11 +156,16 @@ public class Game : Service
 
 	#endregion
 
+	Ball m_MainBall;
 	public Ball MainBall
 	{
 		get
 		{
-			return GameObject.FindWithTag("MainBall").GetComponent<Ball>();
+			if (m_MainBall == null)
+			{
+				m_MainBall = GameObject.FindWithTag("MainBall").GetComponent<Ball>();
+			}
+			return m_MainBall;
 		}
 	}
 
