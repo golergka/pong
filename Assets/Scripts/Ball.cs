@@ -27,6 +27,7 @@ public class Ball : Resettable
 	void Awake()
 	{
 		r_StartVelocity = Velocity;
+		ServiceProvider.GetService<Game>().RegisterPausable(this);
 	}
 
 	public override void Reset()

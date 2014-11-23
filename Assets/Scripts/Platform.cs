@@ -31,6 +31,11 @@ public class Platform : MonoBehaviour
 		}
 	}
 
+	void Awake()
+	{
+		ServiceProvider.GetService<Game>().RegisterPausable(this);
+	}
+
 	public void FixedUpdate()
 	{
 		// Create movement vector according to input

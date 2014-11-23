@@ -62,8 +62,10 @@ public class Game : Service
 				BlueScore++;
 				break;
 		}
-		CheckWin();
-		ResetRound();
+		if (!CheckWin())
+		{
+			ResetRound();
+		}
 	}
 
 	void ResetScore()
@@ -72,12 +74,23 @@ public class Game : Service
 		BlueScore = 0;
 	}
 
-	void CheckWin()
+	bool CheckWin()
 	{
-		if (m_RedScore > MaxScore || m_BlueScore > MaxScore)
+		if (m_RedScore >= MaxScore || m_BlueScore >= MaxScore)
 		{
-			ResetScore();
+			StartCoroutine(WinCoroutine());
+			return true;
 		}
+		return false;
+	}
+
+	IEnumerator WinCoroutine()
+	{
+		Pause(true);
+		yield return new WaitForSeconds(2f);
+		Pause(false);
+		ResetRound();
+		ResetScore();
 	}
 
 	void UpdateScoreText()
@@ -89,10 +102,27 @@ public class Game : Service
 	}
 
 	List<Resettable> m_Resettables = new List<Resettable>();
+	List<Behaviour> m_Pausables = new List<Behaviour>();
 
 	public void RegisterResettable(Resettable _ToRegister)
 	{
 		m_Resettables.Add(_ToRegister);
+	}
+
+	void Pause(bool _Value)
+	{
+		foreach(var c in m_Pausables)
+		{
+			if (c != null)
+			{
+				c.enabled = !_Value;
+			}
+		}
+	}
+
+	public void RegisterPausable(Behaviour _Pausable)
+	{
+		m_Pausables.Add(_Pausable);
 	}
 
 	void ResetRound()
