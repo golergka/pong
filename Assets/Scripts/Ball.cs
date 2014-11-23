@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Ball : MonoBehaviour
+public class Ball : Resettable
 {
 
 	public Vector3 StartVelocity;
 
 	Vector3 m_Velocity = new Vector3();
 
-	public void Awake()
+	public override void Reset()
 	{
 		m_Velocity = StartVelocity;
 	}

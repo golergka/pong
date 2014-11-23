@@ -7,6 +7,7 @@ public class Game : Service
 	public void Score(Player _PlayerGoal)
 	{
 		Debug.Log("Score for " + _PlayerGoal);
+		Reset();
 	}
 
 	List<Resettable> m_Resettables = new List<Resettable>();
