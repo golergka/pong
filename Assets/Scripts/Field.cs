@@ -14,6 +14,8 @@ public class Field : Service
 	public Transform LeftGoal;
 	public Transform RightGoal;
 
+	public float GoalsDelta = 0.5f;
+
 	public void SetAspectRatio(float _Aspect)
 	{
 		var boxCollider = collider as BoxCollider;
@@ -29,8 +31,8 @@ public class Field : Service
 		boxCollider.size = size;
 		var leftPosition = transform.position;
 		var rightPosition = transform.position;
-		leftPosition.x = - targetWidth / 2 - 0.5f;
-		rightPosition.x = targetWidth / 2 + 0.5f;
+		leftPosition.x = - targetWidth / 2 - GoalsDelta;
+		rightPosition.x = targetWidth / 2 + GoalsDelta;
 		LeftGoal.position = leftPosition;
 		RightGoal.position = rightPosition;
 	}
