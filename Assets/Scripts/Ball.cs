@@ -6,12 +6,21 @@ public class Ball : Resettable
 	Vector3 r_StartVelocity;
 
 	public Vector3 Velocity = new Vector3();
+
 	public float Speed
 	{
 		get { return Velocity.magnitude; }
 		set
 		{
 			Velocity = Velocity.normalized * value;
+		}
+	}
+
+	bool DrawDebug
+	{
+		get
+		{
+			return gameObject.tag == "MainBall";
 		}
 	}
 
@@ -23,6 +32,20 @@ public class Ball : Resettable
 	public override void Reset()
 	{
 		Velocity = r_StartVelocity;
+	}
+
+	void DrawDebugLine(Vector3 _Delta, Color _Color)
+	{
+		if (DrawDebug)
+		{
+			Debug.DrawLine(
+					transform.position, 
+					transform.position + _Delta.normalized * 5f,
+					_Color,
+					2f,
+					false
+				);
+		}
 	}
 
 	public void OnCollisionEnter(Collision _Collision)
@@ -37,10 +60,11 @@ public class Ball : Resettable
 		{
 			return;
 		}
-		Debug.DrawLine(transform.position, transform.position + Velocity.normalized, Color.yellow, 2f, false);
-		Velocity = Velocity - 2 * Vector3.Dot(Velocity, normal) * normal;
-		Debug.DrawLine(transform.position, transform.position + normal, Color.blue, 2f, false);
-		Debug.DrawLine(transform.position, transform.position + Velocity.normalized, Color.green, 2f, false);
+		var newVelocity = Velocity - 2 * Vector3.Dot(Velocity, normal) * normal;
+		DrawDebugLine(Velocity, Color.yellow);
+		DrawDebugLine(normal, Color.blue);
+		DrawDebugLine(newVelocity, Color.green);
+		Velocity = newVelocity;
 	}
 
 	public void FixedUpdate()
