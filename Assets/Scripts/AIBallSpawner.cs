@@ -13,6 +13,8 @@ public class AIBallSpawner : MonoBehaviour
 		}
 		var newBall = Object.Instantiate(ball) as Ball;
 		newBall.Speed *= ai.PredictionMultiplier;
+		newBall.transform.parent = ball.transform.parent;
+		newBall.transform.position = ball.transform.position;
 		newBall.gameObject.name += "_Invisible";
 		newBall.gameObject.tag = AI.AIBallTag;
 		newBall.gameObject.AddComponent<DestroyOnReset>();

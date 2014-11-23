@@ -614,7 +614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c05105c8089574cec974ca96043825fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PredictionMultiplier: 1.5
+  PredictionMultiplier: 1.10000002
   MinimumDelta: 3
 --- !u!4 &249376949
 Transform:
@@ -645,7 +645,7 @@ GameObject:
   m_Layer: 9
   m_Name: Ball
   m_TagString: MainBall
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -1203168336, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2646,6 +2646,11 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: .0476190485
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: db613e67a5fc449c185e891520892895, type: 2}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: -1203168336, guid: 0000000000000000d000000000000000,
+        type: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: db613e67a5fc449c185e891520892895, type: 2}
   m_RootGameObject: {fileID: 260667692}
