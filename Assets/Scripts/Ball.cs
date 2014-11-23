@@ -20,7 +20,7 @@ public class Ball : Resettable
 		{
 			return;
 		}
-		var normal = wall.Normal.normalized;
+		var normal = wall.WorldNormal.normalized;
 		m_Velocity = m_Velocity - 2 * Vector3.Dot(m_Velocity, normal) * normal;
 	}
 
