@@ -2016,8 +2016,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1042727322}
-  m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106709}
-  m_LocalPosition: {x: 0, y: 19.6779995, z: 0}
+  m_LocalRotation: {x: .679833233, y: 0, z: 0, w: .733366787}
+  m_LocalPosition: {x: 0, y: 19.6779995, z: -2.07080007}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2260,7 +2260,7 @@ GameObject:
   - 114: {fileID: 1412462801}
   - 65: {fileID: 1412462800}
   m_Layer: 8
-  m_Name: Walls
+  m_Name: Field
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2305,6 +2305,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ccf205b554a441bfa00661812a960f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LeftGoal: {fileID: 1884090726}
+  RightGoal: {fileID: 777671677}
 --- !u!1 &1494505392
 GameObject:
   m_ObjectHideFlags: 0

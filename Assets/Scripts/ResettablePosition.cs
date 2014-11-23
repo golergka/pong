@@ -7,14 +7,14 @@ public class ResettablePosition : Resettable
 
 	void Awake()
 	{
-		r_Position = transform.position;
+		r_Position = transform.localPosition;
 	}
 
 	public override void Reset()
 	{
 		if (this != null)
 		{
-			transform.position = r_Position;
+			transform.localPosition = r_Position;
 		}
 	}
 }
