@@ -18,10 +18,23 @@ public class Platform : MonoBehaviour
 		}
 	}
 
+	PlatformController m_Controller;
+	PlatformController Controller
+	{
+		get
+		{
+			if (m_Controller == null)
+			{
+				m_Controller = gameObject.GetComponent<PlatformController>();
+			}
+			return m_Controller;
+		}
+	}
+
 	public void FixedUpdate()
 	{
 		// Create movement vector according to input
-		var speed = Input.GetAxis("Vertical") * Speed;
+		var speed = Controller.Direction * Speed;
 		var delta = speed * Time.fixedDeltaTime;
 
 		// Limit movement by field's bounds
@@ -36,4 +49,5 @@ public class Platform : MonoBehaviour
 		var movement = new Vector3(0,0,delta);
 		transform.position += movement;
 	}
+
 }

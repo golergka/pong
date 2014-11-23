@@ -3,14 +3,26 @@ using System.Collections;
 
 public class Ball : Resettable
 {
+	Vector3 r_StartVelocity;
 
-	public Vector3 StartVelocity;
+	public Vector3 Velocity = new Vector3();
+	public float Speed
+	{
+		get { return Velocity.magnitude; }
+		set
+		{
+			Velocity = Velocity.normalized * value;
+		}
+	}
 
-	Vector3 m_Velocity = new Vector3();
+	void Awake()
+	{
+		r_StartVelocity = Velocity;
+	}
 
 	public override void Reset()
 	{
-		m_Velocity = StartVelocity;
+		Velocity = r_StartVelocity;
 	}
 
 	public void OnCollisionEnter(Collision _Collision)
@@ -21,18 +33,17 @@ public class Ball : Resettable
 			return;
 		}
 		var normal = wall.WorldNormal.normalized;
-		m_Velocity = m_Velocity - 2 * Vector3.Dot(m_Velocity, normal) * normal;
+		Velocity = Velocity - 2 * Vector3.Dot(Velocity, normal) * normal;
 	}
 
 	public void FixedUpdate()
 	{
-		transform.position += m_Velocity * Time.fixedDeltaTime;
+		transform.position += Velocity * Time.fixedDeltaTime;
 	}
 
 	public void OnDrawGizmosSelected()
 	{
 		Gizmos.color = Color.red;
-		Vector3 vel = Application.isPlaying ? m_Velocity : StartVelocity;
-		Gizmos.DrawLine(transform.position, transform.position + vel);
+		Gizmos.DrawLine(transform.position, transform.position + Velocity);
 	}
 }

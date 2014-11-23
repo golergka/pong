@@ -37,6 +37,19 @@ public class Game : Service
 		ResetScore();
 	}
 
+	public bool IsHuman(Player _Player)
+	{
+		return _Player == Player.Blue;
+	}
+
+	public Ball MainBall
+	{
+		get
+		{
+			return GameObject.FindWithTag("MainBall").GetComponent<Ball>();
+		}
+	}
+
 	public void Score(Player _PlayerGoal)
 	{
 		switch(_PlayerGoal)

@@ -12,6 +12,9 @@ public class ResettablePosition : Resettable
 
 	public override void Reset()
 	{
-		transform.position = r_Position;
+		if (this != null)
+		{
+			transform.position = r_Position;
+		}
 	}
 }

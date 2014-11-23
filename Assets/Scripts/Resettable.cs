@@ -5,7 +5,6 @@ public abstract class Resettable : MonoBehaviour
 {
 	void Start ()
 	{
-		Reset();
 		ServiceProvider.GetService<Game>().RegisterResettable(this);
 	}
 
