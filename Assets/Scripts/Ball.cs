@@ -33,7 +33,14 @@ public class Ball : Resettable
 			return;
 		}
 		var normal = wall.WorldNormal.normalized;
+		if (Vector3.Angle(Velocity, normal) < 90f)
+		{
+			return;
+		}
+		Debug.DrawLine(transform.position, transform.position + Velocity.normalized, Color.yellow, 2f, false);
 		Velocity = Velocity - 2 * Vector3.Dot(Velocity, normal) * normal;
+		Debug.DrawLine(transform.position, transform.position + normal, Color.blue, 2f, false);
+		Debug.DrawLine(transform.position, transform.position + Velocity.normalized, Color.green, 2f, false);
 	}
 
 	public void FixedUpdate()
