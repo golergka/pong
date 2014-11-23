@@ -24,4 +24,15 @@ public static class ServiceProvider
 	{
 		m_Services[_Service.GetType()] = _Service;
 	}
+
+	public static void RegisterMock(Service _MockService, Type _ReplaceType)
+	{
+		var mockType = _MockService.GetType();
+		if (!mockType.IsSubclassOf(_ReplaceType))
+		{
+			Debug.LogError("Type of mock service " + mockType + " isn't a subclass of " + _ReplaceType);
+			return;
+		}
+		m_Services[_ReplaceType] = _MockService;
+	}
 }
